@@ -30,7 +30,7 @@ function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
-}                                                                                               //didn't use this. why is it here?
+}                                                                                               
 
 const date1 = new Date(
   new Date().getFullYear(),
@@ -58,7 +58,7 @@ const earlierDate = (date1, date2) => {
 console.log(earlierDate(date1, date2));
 
 // 7. How do I test if a date is valid? ****
-const isValidDate = (date) => date instanceof Date && !isNaN(date); //why?
+const isValidDate = (date) => date instanceof Date && !isNaN(date);                                             //note to self: look into why this works
 
 // 8. Output today in the following format: MM-DD-YYYY - using the getter methods on the date object
 console.log(`${today.getMonth()}-${today.getDate()}-${today.getFullYear()}`);
@@ -89,14 +89,14 @@ futureDate.setDate(today.getDate() + 1);
 console.log(futureDate);
 
 // 14. Get your timezone from today (remember it's in mins and the sign is inverted)
-console.log(today.getTimezoneOffset());
+console.log(Math.abs(today.getTimezoneOffset()));
 
 // 15. Use the Intl module formatter (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/format) to get the time in Sydney (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
 //AEST
 const sydneyFormatter = new Intl.DateTimeFormat("en-gb", {
   timeZone: "Australia/Sydney",
 });
-console.log("australia", sydneyFormatter.format(today));                                //check against slides
+console.log("australia", sydneyFormatter.format(today));                                
 
 // 16. Write a function that creates a years/months/days/hours/mins/secs/ms duration in ms.
 const conversionToMilliseconds = (
@@ -120,7 +120,7 @@ const conversionToMilliseconds = (
   return date.valueOf();
 };
 
-console.log(conversionToMilliseconds(1, 1, 1, 1, 1, 1, 1));                             //have I understood this question correctly? time since epoch? or time absolutely?
+console.log(conversionToMilliseconds(1, 1, 1, 1, 1, 1, 1));                             //have I understood this question correctly? ms since epoch? or ms in the timeframe given?
 
 // 17. Write a function that returns an object with the years/months/days/hours/mins/secs/ms between 2 dates
 const differenceBetweenTwoDates = (date1, date2) => {
@@ -146,10 +146,7 @@ const differenceBetweenTwoDates = (date1, date2) => {
     milliseconds: datesArray[1].milliseconds - datesArray[0].milliseconds,
   }
 return difference;
-};                                                                                  //revisit this. too repetitive?
+};                                                                                      //feel like this could be refactored. too repetitive?
 
 console.log(differenceBetweenTwoDates(date1, date2))
 
-/*****************************************************************
- * For date-fns Exercises follow link on page
- ******************************************************************/
